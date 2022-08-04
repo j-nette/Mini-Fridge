@@ -5,7 +5,7 @@ A simple temperature controller using a TMP36 sensor. The temperature in Celcius
 
 ## Circuit Components 
 - 2 Push buttons
-  - Up button _connected to D3 _
+  - Up button _connected to D3_
   - Down button _connected to D2_
 - TMP36 _connected to D1_
 - Liquid Crystal LCD 
