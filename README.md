@@ -1,9 +1,7 @@
 # Mini Fridge 
 Note: This repo is still a WIP.
 
-## Features
-- Temperature in Celcius is displayed on a Liquid Crystal LCD
-- 2 push buttons to increase/decrease the desired temperature
+A simple temperature controller using a TMP36 sensor. The temperature in Celcius is displayed on a Liquid Crystal LCD.
 
 ## Circuit Components 
 - 2 Push buttons
