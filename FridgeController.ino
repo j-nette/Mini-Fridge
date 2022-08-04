@@ -1,3 +1,6 @@
+/* Project created by Jeanette (2020)
+https://github.com/DistressedFish/Mini-Fridge */
+
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
