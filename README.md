@@ -1,13 +1,15 @@
 # Mini Fridge 
 Note: This repo is still a WIP.
 
-A simple temperature controller using a TMP36 sensor. The temperature in Celcius is displayed on a Liquid Crystal LCD.
+A simple temperature controller using a TMP36 sensor. 
+
+## Features
+- Temperature in Celcius is displayed on a Liquid Crystal LCD
+- Simple 2 button increment/decrement switch to update the target temperature
 
 ## Circuit Components 
 - 2 Push buttons
-  - Up button _connected to D3_
-  - Down button _connected to D2_
-- TMP36 _connected to D1_
+- TMP36
 - Liquid Crystal LCD 
 - Arduino Nano
-- Relay _connected between D4 and the 12V power source_
+- Relay (Optional; for connections to a >9V cooling system/power supply)
