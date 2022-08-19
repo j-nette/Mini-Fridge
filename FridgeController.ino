@@ -8,7 +8,7 @@ https://github.com/DistressedFish/Mini-Fridge */
 int btnState1;
 int btnState2; 
 int prevBtnState;
-int btnCounter = 20;                //temperature in Celcius (Default is 20C)
+int desiredTemp = 20;                //temperature in Celcius (Default is 20C)
 int value;                          //val read from temp sensor
 
 /* Output & Input Pins */
@@ -42,7 +42,7 @@ void setup()
   lcd.backlight();
   lcd.setCursor(0,0);
   lcd.print("Set to:");
-  lcd.print(btnCounter);
+  lcd.print(desiredTemp);
   lcd.print("C");
 
  digitalWrite(relayPin,LOW);          //Relay is initially off
@@ -55,16 +55,16 @@ void loop(){
   btnState2 = digitalRead(btn2);
  
   if (btnState1 != prevBtnState) {   
-    if (btnState1 == HIGH) {          //if btnstate1 changed, add to the temperature counter
-      btnCounter++;
+    if (btnState1 == HIGH) {          //if the up button is pressed, add to the temperature counter
+      desiredTemp++;
       Serial.print("desired temp:");
-      Serial.println(btnCounter);
+      Serial.println(desiredTemp);
       
       lcd.setCursor(0,0);
-      lcd.print("                 "); //clearing first row
+      lcd.print("                 "); //clearing the first row of the display
       lcd.setCursor(0,0);
       lcd.print("Set to:");
-      lcd.print(btnCounter);
+      lcd.print(desiredTemp);
       lcd.print("C");
     }
     while(millis() < currentMillis + btnDelay){
@@ -72,17 +72,17 @@ void loop(){
   }
  
   if (btnState2 != prevBtnState) { 
-    if (btnState2 == HIGH) {           //if btnstate2 changed, subtract from the temperature counter
-      btnCounter--;
+    if (btnState2 == HIGH) {           //if the down button is pressed, subtract from the temperature counter
+      desiredTemp--;
       Serial.print("desired temp:");
-      Serial.println(btnCounter);
+      Serial.println(desiredTemp);
       
       
       lcd.setCursor(0,0);
-      lcd.print("                 ");  //clearing first row
+      lcd.print("                 ");  //clearing the first row of the display
       lcd.setCursor(0,0);
       lcd.print("Set to:");
-      lcd.println(btnCounter);
+      lcd.println(desiredTemp);
       lcd.print("C");
     }
     while(millis() < currentMillis + btnDelay){
@@ -90,7 +90,7 @@ void loop(){
   }
   
   if (currentMillis - startMillis >= period)  {
-    value = analogRead(tempPin);        //Calculating temperature based on voltage measured by the temperature sensor
+    value = analogRead(tempPin);        //calculating temperature based on voltage measured by the temperature sensor
     double millivolts = (value / 1024.0) * 5000; 
     double celsius = millivolts / 10;
     
@@ -101,13 +101,13 @@ void loop(){
     Serial.print("celsius:");
     Serial.println(celsius);            //read the value from the sensor
     
-    if(celsius >= btnCounter) { 
+    if(celsius >= desiredTemp) { 
       digitalWrite(L, HIGH);
       digitalWrite(relayPin, LOW);  
       Serial.print("Cooling on");
     }
     
-    if (celsius < btnCounter) {
+    if (celsius < desiredTemp) {
       digitalWrite(L, LOW);
       digitalWrite(relayPin, HIGH);
       Serial.print("Cooling off");
